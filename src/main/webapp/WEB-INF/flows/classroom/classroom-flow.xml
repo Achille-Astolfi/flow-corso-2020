@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+	<var name="flowBean"
+		class="com.example.corso.flow.viewmodel.ClassroomFlowBean" />
+
+	<view-state id="start" model="flowBean">
+		<transition on="add" to="register"></transition>
+	</view-state>
+	
+	<decision-state id="register">
+		<on-entry>
+			<evaluate expression="flowBean.register()"></evaluate>
+		</on-entry>
+		<if test="flowBean.full" then="end" else="start"/>
+	</decision-state>
+
+	<end-state id="end" view="end.jsp">
+	</end-state>
+</flow>
