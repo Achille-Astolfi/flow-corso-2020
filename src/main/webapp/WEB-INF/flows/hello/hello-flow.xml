@@ -5,12 +5,26 @@
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
 	<var name="flowBean"
-		class="com.example.corso.flow.viewmodel.HelloFlowBean" />
+		class="com.example.corso.flow.viewmodel.HelloFlowBean" />	
 
-	<view-state id="start">
+	<view-state id="start" model="flowBean" validation-hints="'valid'">
+		<transition on="success" to="review"></transition>
+	</view-state>
+	
+	<view-state id="review" model="flowBean">
 		<transition on="success" to="end"></transition>
+		<transition on="fail" to="start"></transition>
+		<transition on="add" to="friend"></transition>
 	</view-state>
 
-	<end-state id="end" view="externalRedirect:/index">
+	<view-state id="friend" model="flowBean">
+		<transition on="success" to="end-with-friend"></transition>
+		<transition on="fail" to="end"></transition>
+	</view-state>
+
+	<end-state id="end" view="end.jsp">
+	</end-state>
+
+	<end-state id="end-with-friend" view="end-with-friend.jsp">
 	</end-state>
 </flow>

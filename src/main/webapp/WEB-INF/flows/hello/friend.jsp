@@ -6,24 +6,25 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<title>Hello Flow</title>
+<title>Amicizia</title>
 <c:url var="resources" value="/resources" />
 <link rel="stylesheet"
 	href="${ resources }/bootstrap/4.4.1/css/bootstrap.css" type="text/css">
 </head>
 <body>
 	<div class="container">
-		<h1>Hello Flow</h1>
-		<p>Pagina iniziale di Hello Flow</p>
+		<h1>Amicizia</h1>
+		<p>Ciao ${ flowBean.firstName }; felice che tu porti l'amic@.
 		<form:form action="${ flowExecutionUrl }" method="post"
 			modelAttribute="flowBean">
 			<div class="form-group">
-				<form:label path="firstName">Nome</form:label>
-				<form:input class="form-control" path="firstName"
-					placeholder="Il tuo nome" />
-				<form:errors path="firstName" class="text-danger"></form:errors>
+				<form:label path="friendName">Nome dell'amic@</form:label>
+				<form:input class="form-control" path="friendName"
+					placeholder="Il nome dell'amic@" />
+				<form:errors path="friendName" class="text-danger"></form:errors>
 			</div>
 			<form:button class="btn btn-primary" name="_eventId_success">Ok</form:button>
+			<form:button class="btn btn-warning" name="_eventId_fail">Non ho l'amic@</form:button>
 		</form:form>
 	</div>
 	<script type="text/javascript"
